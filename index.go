@@ -15,6 +15,12 @@ import (
 )
 
 
+type record struct {
+    createdAt string
+    key string
+    totalCount string
+}
+
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
@@ -50,7 +56,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         log.Fatal(err)
     }
-    ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+    ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
     err = client.Connect(ctx)
     if err != nil {
         log.Fatal(err)
@@ -85,8 +91,6 @@ if err = data.All(ctx, &showsWithInfo); err != nil {
 }
 
 fmt.Fprintf(w, "%+v", showsWithInfo)  
-
-
 
 
 }
